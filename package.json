@@ -1,0 +1,16 @@
+{
+  "name": "drachin-vercel",
+  "version": "1.0.0",
+  "description": "Drachin Drama Site with CORS Proxy",
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "echo 'Static site, no build needed'",
+    "deploy": "vercel --prod"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "engines": {
+    "node": ">=18.x"
+  }
+}
+
