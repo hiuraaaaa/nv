@@ -2,14 +2,14 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>Manga Susuku - Baca Manga Dewasa Online</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
 
         body {
@@ -22,7 +22,7 @@
         .navbar {
             background: #1a1e24;
             border-bottom: 1px solid #2a2f38;
-            padding: 1rem 2rem;
+            padding: 0.8rem 1rem;
             position: sticky;
             top: 0;
             z-index: 100;
@@ -36,12 +36,12 @@
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            gap: 1rem;
+            gap: 0.5rem;
         }
 
         .logo h1 {
-            font-size: 1.8rem;
-            font-weight: 800;
+            font-size: 1.3rem;
+            font-weight: 700;
             background: linear-gradient(135deg, #ff6b6b, #ff8e53);
             -webkit-background-clip: text;
             background-clip: text;
@@ -50,30 +50,35 @@
 
         .logo p {
             color: #9ca3af;
-            font-size: 0.8rem;
+            font-size: 0.7rem;
+            display: none;
         }
 
         .nav-links {
             display: flex;
-            gap: 2rem;
+            gap: 0.8rem;
             align-items: center;
         }
 
         .nav-links a {
             color: #d1d5db;
             text-decoration: none;
+            font-size: 0.85rem;
             font-weight: 500;
-            transition: color 0.2s;
+            padding: 0.3rem 0.6rem;
+            border-radius: 20px;
         }
 
-        .nav-links a:hover {
-            color: #ff8e53;
+        .nav-links a.active {
+            background: #ff8e53;
+            color: #0a0c0f;
         }
 
         .page-badge {
             background: #2a2f38;
-            padding: 0.5rem 1.2rem;
-            border-radius: 30px;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
             font-weight: 600;
             color: #ff8e53;
         }
@@ -81,20 +86,20 @@
         /* Container */
         .container {
             max-width: 1400px;
-            margin: 2rem auto;
-            padding: 0 2rem;
+            margin: 1rem auto;
+            padding: 0 0.8rem;
         }
 
         /* Section Title */
         .section-title {
             display: flex;
             align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
+            gap: 0.5rem;
+            margin: 1.2rem 0 0.8rem;
         }
 
         .section-title h2 {
-            font-size: 1.8rem;
+            font-size: 1.2rem;
             font-weight: 700;
             color: white;
         }
@@ -102,23 +107,37 @@
         .section-title span {
             background: #ff8e53;
             color: #0a0c0f;
-            padding: 0.2rem 0.8rem;
+            padding: 0.15rem 0.6rem;
             border-radius: 20px;
-            font-size: 0.9rem;
+            font-size: 0.7rem;
             font-weight: 600;
         }
 
-        /* Loading Skeleton */
+        /* Loading Skeleton - 3 card di mobile */
         .skeleton-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-            gap: 1.5rem;
-            margin: 2rem 0;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.6rem;
+            margin: 0.5rem 0 1.5rem;
+        }
+
+        @media (min-width: 640px) {
+            .skeleton-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 0.8rem;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .skeleton-grid {
+                grid-template-columns: repeat(6, 1fr);
+                gap: 1rem;
+            }
         }
 
         .skeleton-card {
             background: #1e242b;
-            border-radius: 16px;
+            border-radius: 12px;
             overflow: hidden;
             border: 1px solid #2a2f38;
         }
@@ -132,14 +151,14 @@
         }
 
         .skeleton-content {
-            padding: 1rem;
+            padding: 0.5rem;
         }
 
         .skeleton-line {
-            height: 1rem;
+            height: 0.7rem;
             background: #2a2f38;
-            border-radius: 8px;
-            margin-bottom: 0.5rem;
+            border-radius: 4px;
+            margin-bottom: 0.4rem;
         }
 
         .skeleton-line.short {
@@ -151,27 +170,47 @@
             100% { background-position: -200% 0; }
         }
 
-        /* Manga Grid */
+        /* Manga Grid - 3 card di mobile */
         .manga-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-            gap: 1.5rem;
-            margin: 2rem 0 3rem;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.6rem;
+            margin: 0.5rem 0 1.5rem;
+        }
+
+        @media (min-width: 640px) {
+            .manga-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 0.8rem;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .manga-grid {
+                grid-template-columns: repeat(6, 1fr);
+                gap: 1rem;
+            }
+        }
+
+        @media (min-width: 1280px) {
+            .manga-grid {
+                grid-template-columns: repeat(7, 1fr);
+                gap: 1.2rem;
+            }
         }
 
         .manga-card {
             background: #1e242b;
-            border-radius: 16px;
+            border-radius: 12px;
             overflow: hidden;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
             border: 1px solid #2a2f38;
             cursor: pointer;
         }
 
         .manga-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-3px);
             border-color: #ff8e53;
-            box-shadow: 0 10px 25px rgba(255, 142, 83, 0.15);
         }
 
         .manga-image-container {
@@ -184,117 +223,110 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s;
-        }
-
-        .manga-card:hover .manga-image {
-            transform: scale(1.05);
         }
 
         .chapter-badge {
             position: absolute;
-            bottom: 0.5rem;
-            right: 0.5rem;
-            background: rgba(255, 142, 83, 0.9);
+            bottom: 0.3rem;
+            right: 0.3rem;
+            background: rgba(255, 142, 83, 0.95);
             color: white;
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
+            padding: 0.2rem 0.5rem;
+            border-radius: 12px;
+            font-size: 0.65rem;
             font-weight: 600;
-            backdrop-filter: blur(5px);
+            backdrop-filter: blur(2px);
         }
 
         .manga-content {
-            padding: 1rem;
+            padding: 0.5rem;
         }
 
         .manga-title {
-            font-size: 1rem;
+            font-size: 0.8rem;
             font-weight: 600;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.2rem;
             color: white;
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
-            min-height: 2.8rem;
+            line-height: 1.2;
+            min-height: 2rem;
         }
 
         .manga-chapter {
             color: #ff8e53;
-            font-size: 0.9rem;
+            font-size: 0.7rem;
             font-weight: 500;
         }
 
-        /* Update List */
+        /* Update List - Tetap full width */
         .updates-list {
             background: #1e242b;
-            border-radius: 24px;
+            border-radius: 16px;
             border: 1px solid #2a2f38;
             overflow: hidden;
-            margin: 2rem 0;
+            margin: 1rem 0 1.5rem;
         }
 
         .update-item {
             display: flex;
             align-items: center;
-            padding: 1rem 1.5rem;
+            padding: 0.8rem;
             border-bottom: 1px solid #2a2f38;
-            transition: background 0.2s;
+            gap: 0.8rem;
         }
 
         .update-item:last-child {
             border-bottom: none;
         }
 
-        .update-item:hover {
-            background: #252b33;
-        }
-
         .update-image {
-            width: 60px;
-            height: 80px;
+            width: 45px;
+            height: 60px;
             object-fit: cover;
-            border-radius: 8px;
-            margin-right: 1.5rem;
+            border-radius: 6px;
+            flex-shrink: 0;
         }
 
         .update-info {
             flex: 1;
+            min-width: 0;
         }
 
         .update-title {
-            font-size: 1.1rem;
+            font-size: 0.9rem;
             font-weight: 600;
             color: white;
             margin-bottom: 0.3rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .update-chapters {
             display: flex;
-            gap: 1rem;
+            gap: 0.4rem;
             flex-wrap: wrap;
         }
 
         .chapter-link {
             color: #9ca3af;
             text-decoration: none;
-            font-size: 0.9rem;
-            padding: 0.2rem 0.8rem;
+            font-size: 0.7rem;
+            padding: 0.2rem 0.6rem;
             background: #2a2f38;
-            border-radius: 15px;
-            transition: all 0.2s;
-        }
-
-        .chapter-link:hover {
-            background: #ff8e53;
-            color: #0a0c0f;
+            border-radius: 12px;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            white-space: nowrap;
         }
 
         .chapter-time {
             color: #6b7280;
-            font-size: 0.8rem;
-            margin-left: 0.5rem;
+            font-size: 0.65rem;
         }
 
         /* Pagination */
@@ -302,106 +334,91 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 1rem;
-            margin: 3rem 0;
+            gap: 0.5rem;
+            margin: 2rem 0 1.5rem;
         }
 
         .page-btn {
             background: #1e242b;
             border: 1px solid #2a2f38;
             color: white;
-            padding: 0.7rem 2rem;
+            padding: 0.5rem 1rem;
             border-radius: 30px;
+            font-size: 0.8rem;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.2s;
-            min-width: 120px;
+            min-width: 80px;
         }
 
-        .page-btn:hover:not(:disabled) {
+        .page-btn:active:not(:disabled) {
             background: #ff8e53;
             border-color: #ff8e53;
             color: #0a0c0f;
         }
 
         .page-btn:disabled {
-            opacity: 0.4;
+            opacity: 0.3;
             cursor: not-allowed;
         }
 
         .page-info {
             background: #1e242b;
-            padding: 0.5rem 1.5rem;
+            padding: 0.4rem 1rem;
             border-radius: 30px;
             border: 1px solid #2a2f38;
+            font-size: 0.8rem;
             font-weight: 600;
             color: #ff8e53;
         }
 
-        /* Debug Panel */
+        /* Debug Panel - Disembunyikan di mobile */
         .debug-toggle {
             position: fixed;
-            bottom: 1rem;
-            right: 1rem;
+            bottom: 0.5rem;
+            right: 0.5rem;
             background: #1e242b;
             border: 1px solid #2a2f38;
             color: #9ca3af;
-            padding: 0.5rem 1rem;
-            border-radius: 30px;
-            cursor: pointer;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
             z-index: 1000;
-            font-size: 0.8rem;
         }
 
         .debug-panel {
-            position: fixed;
-            bottom: 4rem;
-            right: 1rem;
-            width: 400px;
-            max-height: 500px;
-            overflow-y: auto;
-            background: #1e242b;
-            border: 1px solid #ff8e53;
-            border-radius: 12px;
-            padding: 1rem;
-            font-family: monospace;
-            font-size: 0.8rem;
-            color: #9ca3af;
-            z-index: 999;
             display: none;
-        }
-
-        .debug-panel.show {
-            display: block;
         }
 
         /* Error */
         .error-container {
             text-align: center;
-            padding: 4rem 2rem;
+            padding: 2rem 1rem;
             background: #1e242b;
-            border-radius: 24px;
+            border-radius: 16px;
             border: 1px solid #ff6b6b;
-            margin: 2rem 0;
+            margin: 1rem 0;
         }
 
         .retry-btn {
             background: #ff8e53;
             border: none;
             color: #0a0c0f;
-            padding: 0.8rem 2rem;
+            padding: 0.6rem 1.5rem;
             border-radius: 30px;
             font-weight: 600;
+            font-size: 0.9rem;
             margin-top: 1rem;
-            cursor: pointer;
+            width: 100%;
+            max-width: 200px;
         }
 
         footer {
             text-align: center;
-            padding: 2rem;
+            padding: 1.5rem 0.5rem;
             color: #6b7280;
+            font-size: 0.7rem;
             border-top: 1px solid #2a2f38;
-            margin-top: 3rem;
+            margin-top: 2rem;
         }
     </style>
 </head>
@@ -409,14 +426,13 @@
     <nav class="navbar">
         <div class="nav-container">
             <div class="logo">
-                <h1>📖 MANGA SUSUKU</h1>
-                <p>Baca manga dewasa tanpa ribet</p>
+                <h1>📖 Manga Susuku</h1>
             </div>
             <div class="nav-links">
                 <a href="#" class="active">Hot</a>
                 <a href="#">Latest</a>
                 <a href="#">Popular</a>
-                <span class="page-badge" id="pageDisplay">Page 1</span>
+                <span class="page-badge" id="pageDisplay">1</span>
             </div>
         </div>
     </nav>
@@ -428,20 +444,16 @@
             <span>Most Read</span>
         </div>
         <div id="hotComicsContainer">
-            <div class="skeleton-grid" id="hotSkeleton">
-                <!-- Skeleton akan diisi JS -->
-            </div>
+            <div class="skeleton-grid" id="hotSkeleton"></div>
         </div>
 
         <!-- Latest Updates Section -->
         <div class="section-title">
             <h2>🆕 Latest Updates</h2>
-            <span>New Chapters</span>
+            <span>New</span>
         </div>
         <div id="latestUpdatesContainer">
-            <div class="skeleton-grid" id="updatesSkeleton">
-                <!-- Skeleton akan diisi JS -->
-            </div>
+            <div class="skeleton-grid" id="updatesSkeleton"></div>
         </div>
 
         <!-- Popular Today Section -->
@@ -450,26 +462,23 @@
             <span>Trending</span>
         </div>
         <div id="popularContainer">
-            <div class="skeleton-grid" id="popularSkeleton">
-                <!-- Skeleton akan diisi JS -->
-            </div>
+            <div class="skeleton-grid" id="popularSkeleton"></div>
         </div>
 
         <!-- Pagination -->
         <div class="pagination">
-            <button class="page-btn" id="prevPage" disabled>← Previous</button>
+            <button class="page-btn" id="prevPage" disabled>← Prev</button>
             <span class="page-info" id="pageInfo">Page 1</span>
             <button class="page-btn" id="nextPage">Next →</button>
         </div>
     </div>
 
-    <!-- Debug Panel -->
+    <!-- Debug Button -->
     <button class="debug-toggle" onclick="toggleDebug()">🐛 Debug</button>
     <div class="debug-panel" id="debugPanel"></div>
 
     <footer>
-        <p>© 2026 Manga Susuku - All rights reserved</p>
-        <p style="font-size: 0.7rem; margin-top: 0.5rem;">Data sourced from mangasusuku.com</p>
+        <p>© 2026 Manga Susuku</p>
     </footer>
 
     <script>
@@ -483,6 +492,9 @@
         const hotContainer = document.getElementById('hotComicsContainer');
         const updatesContainer = document.getElementById('latestUpdatesContainer');
         const popularContainer = document.getElementById('popularContainer');
+        const hotSkeleton = document.getElementById('hotSkeleton');
+        const updatesSkeleton = document.getElementById('updatesSkeleton');
+        const popularSkeleton = document.getElementById('popularSkeleton');
         const prevBtn = document.getElementById('prevPage');
         const nextBtn = document.getElementById('nextPage');
         const pageInfo = document.getElementById('pageInfo');
@@ -498,61 +510,47 @@
             };
             debugLogs.push(log);
             console.log('[Debug]', message, data);
-            updateDebugPanel();
         }
 
         function toggleDebug() {
-            debugPanel.classList.toggle('show');
-            updateDebugPanel();
+            alert('Debug logs:\n' + debugLogs.map(l => `[${l.time}] ${l.message}`).join('\n'));
         }
 
-        function updateDebugPanel() {
-            debugPanel.innerHTML = debugLogs.map(log => 
-                `<div style="margin-bottom: 0.5rem; border-bottom: 1px solid #2a2f38; padding-bottom: 0.3rem;">
-                    <span style="color: #ff8e53;">[${log.time}]</span> ${log.message}
-                    ${log.data ? `<pre style="margin-top: 0.2rem; font-size: 0.7rem;">${JSON.stringify(log.data, null, 2)}</pre>` : ''}
-                </div>`
-            ).join('');
+        // Generate skeleton HTML
+        function generateSkeletonCards(count = 6) {
+            let html = '';
+            for (let i = 0; i < count; i++) {
+                html += `
+                    <div class="skeleton-card">
+                        <div class="skeleton-image"></div>
+                        <div class="skeleton-content">
+                            <div class="skeleton-line"></div>
+                            <div class="skeleton-line short"></div>
+                        </div>
+                    </div>
+                `;
+            }
+            return html;
         }
 
         // Toggle skeletons
         function showSkeletons(show) {
-            const skeletons = {
-                hot: document.getElementById('hotSkeleton'),
-                updates: document.getElementById('updatesSkeleton'),
-                popular: document.getElementById('popularSkeleton')
-            };
-
             if (show) {
-                // Generate skeleton cards
-                ['hot', 'updates', 'popular'].forEach(section => {
-                    let html = '';
-                    for (let i = 0; i < 8; i++) {
-                        html += `
-                            <div class="skeleton-card">
-                                <div class="skeleton-image"></div>
-                                <div class="skeleton-content">
-                                    <div class="skeleton-line"></div>
-                                    <div class="skeleton-line short"></div>
-                                </div>
-                            </div>
-                        `;
-                    }
-                    if (skeletons[section]) {
-                        skeletons[section].innerHTML = html;
-                        skeletons[section].style.display = 'grid';
-                    }
-                });
+                hotSkeleton.innerHTML = generateSkeletonCards(6);
+                updatesSkeleton.innerHTML = generateSkeletonCards(6);
+                popularSkeleton.innerHTML = generateSkeletonCards(6);
                 
-                // Hide containers
+                hotSkeleton.style.display = 'grid';
+                updatesSkeleton.style.display = 'grid';
+                popularSkeleton.style.display = 'grid';
+                
                 hotContainer.innerHTML = '';
                 updatesContainer.innerHTML = '';
                 popularContainer.innerHTML = '';
             } else {
-                // Hide skeletons
-                Object.values(skeletons).forEach(s => {
-                    if (s) s.style.display = 'none';
-                });
+                hotSkeleton.style.display = 'none';
+                updatesSkeleton.style.display = 'none';
+                popularSkeleton.style.display = 'none';
             }
         }
 
@@ -573,11 +571,11 @@
                              alt="${comic.title}"
                              loading="lazy"
                              onerror="this.src='https://via.placeholder.com/180x270/2a2f38/ff8e53?text=No+Cover'">
-                        <span class="chapter-badge">Ch. ${comic.chapter}</span>
+                        <span class="chapter-badge">${comic.chapter}</span>
                     </div>
                     <div class="manga-content">
                         <h3 class="manga-title">${comic.title}</h3>
-                        <div class="manga-chapter">Chapter ${comic.chapter}</div>
+                        <div class="manga-chapter">Ch. ${comic.chapter}</div>
                     </div>
                 `;
                 grid.appendChild(card);
@@ -592,22 +590,22 @@
             const list = document.createElement('div');
             list.className = 'updates-list';
             
-            updates.forEach(update => {
+            updates.slice(0, 8).forEach(update => {
                 const item = document.createElement('div');
                 item.className = 'update-item';
                 
-                const chaptersHtml = update.chapters.map(ch => `
-                    <a href="#" class="chapter-link" onclick="event.preventDefault()">
+                const chaptersHtml = update.chapters.slice(0, 3).map(ch => `
+                    <span class="chapter-link">
                         ${ch.title} <span class="chapter-time">${ch.time}</span>
-                    </a>
+                    </span>
                 `).join('');
                 
                 item.innerHTML = `
                     <img class="update-image" 
-                         src="${update.image || 'https://via.placeholder.com/60x80/2a2f38/ff8e53?text=Manga'}" 
+                         src="${update.image || 'https://via.placeholder.com/45x60/2a2f38/ff8e53?text=M'}" 
                          alt="${update.title}"
                          loading="lazy"
-                         onerror="this.src='https://via.placeholder.com/60x80/2a2f38/ff8e53?text=No+Cover'">
+                         onerror="this.src='https://via.placeholder.com/45x60/2a2f38/ff8e53?text=No'">
                     <div class="update-info">
                         <div class="update-title">${update.title}</div>
                         <div class="update-chapters">
@@ -627,7 +625,7 @@
             const grid = document.createElement('div');
             grid.className = 'manga-grid';
             
-            popular.forEach(item => {
+            popular.slice(0, 6).forEach(item => {
                 const card = document.createElement('div');
                 card.className = 'manga-card';
                 card.innerHTML = `
@@ -637,11 +635,10 @@
                              alt="${item.title}"
                              loading="lazy"
                              onerror="this.src='https://via.placeholder.com/180x270/2a2f38/ff8e53?text=No+Cover'">
-                        <span class="chapter-badge">${item.chapter || 'New'}</span>
                     </div>
                     <div class="manga-content">
                         <h3 class="manga-title">${item.title}</h3>
-                        <div class="manga-chapter">${item.chapter || 'Popular'}</div>
+                        <div class="manga-chapter">Hot</div>
                     </div>
                 `;
                 grid.appendChild(card);
@@ -654,58 +651,48 @@
         async function fetchManga(page = 1) {
             isLoading = true;
             showSkeletons(true);
-            logDebug(`Fetching page ${page}...`);
+            logDebug(`Fetching page ${page}`);
             
             try {
                 const response = await fetch(`${API_PROXY}?page=${page}`);
-                logDebug('Response status:', response.status);
                 
                 if (!response.ok) {
                     throw new Error(`HTTP ${response.status}`);
                 }
                 
                 const data = await response.json();
-                logDebug('Data received:', {
-                    hot: data.hotComics?.length,
-                    updates: data.latestUpdates?.length,
-                    popular: data.popularToday?.length
-                });
+                logDebug('Data loaded');
                 
                 // Update pagination
                 hasNextPage = data.pagination?.hasNextPage || false;
                 currentPage = data.pagination?.currentPage || page;
                 
                 pageInfo.textContent = `Page ${currentPage}`;
-                pageDisplay.textContent = `Page ${currentPage}`;
+                pageDisplay.textContent = currentPage;
                 prevBtn.disabled = currentPage <= 1;
                 nextBtn.disabled = !hasNextPage;
                 
-                // Render sections
+                // Render
                 if (data.hotComics) renderHotComics(data.hotComics);
                 if (data.latestUpdates) renderUpdates(data.latestUpdates);
                 if (data.popularToday) renderPopular(data.popularToday);
                 
             } catch (error) {
-                logDebug('Error:', error.message);
+                logDebug('Error: ' + error.message);
                 
-                const errorHtml = `
+                hotContainer.innerHTML = `
                     <div class="error-container">
-                        <h3 style="color: #ff6b6b;">⚠️ Failed to Load</h3>
-                        <p style="margin: 1rem 0;">${error.message}</p>
-                        <button class="retry-btn" onclick="location.reload()">Retry</button>
+                        <p>⚠️ Gagal memuat</p>
+                        <button class="retry-btn" onclick="location.reload()">Coba Lagi</button>
                     </div>
                 `;
-                
-                hotContainer.innerHTML = errorHtml;
-                updatesContainer.innerHTML = '';
-                popularContainer.innerHTML = '';
             } finally {
                 isLoading = false;
                 showSkeletons(false);
             }
         }
 
-        // Pagination handlers
+        // Pagination
         prevBtn.addEventListener('click', () => {
             if (currentPage > 1 && !isLoading) {
                 fetchManga(currentPage - 1);
@@ -718,9 +705,8 @@
             }
         });
 
-        // Initialize
+        // Start
         document.addEventListener('DOMContentLoaded', () => {
-            logDebug('App initialized');
             fetchManga(1);
         });
     </script>
